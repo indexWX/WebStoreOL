@@ -1,0 +1,58 @@
+﻿@model MyShopDesign.Models.T_Shop_OFProduct
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>T_Shop_OFProduct</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Count)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Count)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Total)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.T_Shop_OrderForm.FahuoId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.T_Shop_OrderForm.FahuoId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.T_Shop_Product.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.T_Shop_Product.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

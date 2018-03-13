@@ -1,0 +1,234 @@
+﻿@using MyShopDesign.Models;
+@{
+    Layout = null;
+    List<T_Shop_Product> lst = ViewBag.lst;
+    int pageIndex = ViewBag.pageIndex;
+    int pageSize = ViewBag.pageSize;
+    int recordCount = ViewBag.recordCount;
+    int maxPage = (int)Math.Ceiling(Convert.ToDecimal(recordCount) / Convert.ToDecimal(pageSize));
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+  function rec(){
+    var mymessage=confirm("已加入购物车");
+  }
+    </script>
+
+    <style>
+        .footer {
+            color: #777;
+            padding: 30px 0;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 70px;
+        }
+
+        .liepin-link {
+            padding: 16px 32px 5px 32px;
+            -webkit-background-size: contain;
+            background-size: contain;
+            background-position: center center;
+        }
+
+        .powered-by-liepin {
+            position: relative;
+            top: -40px;
+            color: #777;
+            font-size: 12px;
+            z-index: 999;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Index">首页</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="ProductAll">所有商品</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">所有类别 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="Productkind?id=8">女装</a></li>
+                            <li><a href="Productkind?id=10">男装</a></li>
+                            <li><a href="Productkind?id=12">家电</a></li>
+                            <li><a href="ProductAll">所有</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" style="margin-top:17px">
+                    <a href="#" style="margin-left:30px;margin-top:0px;margin-bottom:10px" class="glyphicon glyphicon-user">&nbsp;个人中心</a>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    @*导航条*@
+    <div class="searchdiv" style="margin-top:100px">
+        <div class="search">
+            <form class="navbar-form " role="search" style="margin:0 auto;text-align:center;">
+                <div class="form-group">
+                    <input style="height:40px;width:290px" class="form-control" placeholder="输入商品名字"  type="search" name="searchstring"
+                      aria-controls="dataTables-example">
+                </div>
+                <button type="submit" class="btn btn-default" style="width:70px;height:40px">搜索</button>
+            </form>
+        </div>
+    </div>
+    <!--搜索栏-->
+    <p>排序      <a href="ProductAll?orderField=Price desc">价格    </a>    <a href="ProductAll?orderField=Month desc">销量</a></p>
+    <section class="goods-list">
+        <div class="container">
+
+
+            @{
+
+                int i = 1;
+                foreach (T_Shop_Product tmp in lst)
+                {
+                    if (i % 3 == 0)
+                    {
+                        @Html.Raw(" <div class=\"row\">");
+                    }
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail"style="text-align:center">
+                            <a href="detail?id=@tmp.Id">
+                                <img src="~/image/@tmp.Pic" /> 
+                            </a>
+                            <div class="caption">
+                                <h3>@tmp.Name</h3>
+                                <p>价格<span>@tmp.Price</span></p>
+                                <p>月销量<span>@tmp.Month</span>笔</p>
+                                <p>@tmp.Description</p>
+                                <p><a href="AddtoBasket?ProductId=@tmp.Id&Amount=1" class="btn btn-primary" role="button" onclick="rec()">加入购物篮</a> <a href="AddtoOFproduct?ProductId=@tmp.Id&Amount=1" class="btn btn-default" role="button">立即购买</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    if (i % 3 == 0)
+                    {
+                        @Html.Raw(" </div >");
+                    }
+                    i++;
+                }
+
+            }
+
+        </div><!-- .container -->
+    </section>
+    <!--所有商品-->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">
+                当前显示 @((pageIndex - 1) * pageSize + 1) to @((pageIndex) * pageSize) of @recordCount 记录
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button previous " aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                        <a href="ProductAll?pageIndex=@((pageIndex-1)<=0?1:(pageIndex-1))">Previous</a>
+                    </li>
+                    @for (int t = 1; t <= maxPage; t++)
+                    {
+                        if (t == pageIndex)
+                        {
+                            <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                                <a href="ProductAll?pageIndex=@t">@t</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                <a href="ProductAll?pageIndex=@t">@t</a>
+                            </li>
+                        }
+                    }
+
+                    @*<li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                        <a href="/admin/category/index?pageIndex=2">2</a>
+                                         </li>*@
+
+                    <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                        <a href="ProductAll?pageIndex=@((pageIndex+1)>maxPage?maxPage:(pageIndex+1))">Next</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.table-responsive -->
+
+    <footer class="footer">
+        <div class="powered-by-liepin text-center">
+            <span>独家合作伙伴：<a class="liepin-link text-hide" href="http://www.liepin.com/?mscid=b_o_0001" target="_blank" style="background-image:url(./images/liepin-bottom.png);" onclick="_hmt.push(['_trackEvent', 'friend', 'click', '猎聘网'])">猎聘网</a></span>
+        </div>
+        <div class="container">
+            <div class="row footer-top">
+                <div class="col-sm-6 col-lg-6">
+
+                    <p>Bootstrap中文网招聘频道展示的所有职位信息全部来自<a href="http://www.liepin.com/?mscid=b_o_0001">猎聘网</a>。</p>
+                </div>
+                <div class="col-sm-6  col-lg-5 col-lg-offset-1">
+                    <div class="row about">
+                        <div class="col-xs-4 col-md-3">
+                            <h4>关于</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.bootcss.com/about/">关于我们</a></li>
+                                <li><a href="http://www.bootcss.com/ad/">广告合作</a></li>
+                                <li><a href="http://www.bootcss.com/links/">友情链接</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-4 col-md-3">
+                            <h4>联系方式</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="http://weibo.com/bootcss" title="Bootstrap中文网官方微博" target="_blank">新浪微博</a></li>
+                                <li><a href="mailto:admin@bootcss.com">电子邮件</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-4 col-md-3">
+                            <h4>旗下网站</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.golaravel.com/" target="_blank">Laravel中文网</a></li>
+                                <li><a href="http://www.ghostchina.com/" target="_blank">Ghost中国</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 hidden-xs">
+                            <h4>赞助商</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="http://www.ucloud.cn/" target="_blank">UCloud</a></li>
+                                <li><a href="https://www.upyun.com" target="_blank">又拍云</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row footer-bottom">
+                <ul class="list-inline text-center">
+                    <li><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></li>
+                    <li>京公网安备11010802014853</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

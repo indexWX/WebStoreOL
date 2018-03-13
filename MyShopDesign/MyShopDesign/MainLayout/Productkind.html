@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+<style>
+    .listkind  ul li{
+       float:left;
+       list-style:none;
+       width:20%;
+    }
+</style>
+</head>
+<body>
+    <div class="head">
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">首页</a>
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">类别一</a>
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">类别二</a>
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">类别三</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多分类 <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">类别一</a></li>
+                                <li><a href="#">类别二</a></li>
+                                <li><a href="#">类别三</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">类别四</a></li>
+                                <li><a href="#">类别四</a></li>
+                                <li><a href="#">类别四</a></li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right"style="margin-top:17px">                                          
+                        <a href="#" style="margin-left:30px;margin-top:0px;margin-bottom:10px" class="glyphicon glyphicon-user">&nbsp;个人中心</a>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <!--导航条-->
+    <div class="kongxian" style="width:100%;margin-top:50px;height:80px">
+        <div style="width:70%;float:left" >
+            <img src="../image/kongxian.png" />
+        </div>
+        <div style="width:30%;float:right;margin-top:25px">
+            <a href="#"><img src="../image/kongxian2.png" /></a> 
+        </div>
+    </div>
+    <!--空闲条-->
+   <div class="kind1" style="margin-top:40px;margin-left:50px;height:50px">
+       <div style="float:left">
+           <p style="font-weight:bold">所有分类<span class="glyphicon glyphicon-chevron-right"></span></p>
+       </div>
+       <div style="float:right;margin-right:500px;margin-top:-8px">
+           <button type="button" class="btn btn-default">收起筛选<span class="glyphicon glyphicon-chevron-down"></span></button>
+       </div>
+   </div>
+    <!--分类-->
+    <div class="kind" style="height:100px;width:80%">
+        <div  style="height:200px;float:left;width:20%" >
+            <p style="margin-left:30px;">类别</p>
+        </div>
+        <div style="height:200px;float:left;width:80%" class="listkind">
+             <ul>
+                 <li><a href="#">女装</a></li>
+                 <li><a href="#">男装</a></li>
+                 <li><a href="#">箱包</a></li>
+                 <li><a href="#">家电</a></li>
+                 <li><a href="#">手表</a></li>
+             </ul>
+            <ul>
+                <li><a href="#">女装</a></li>
+                <li><a href="#">男装</a></li>
+                <li><a href="#">箱包</a></li>
+                <li><a href="#">家电</a></li>
+                <li><a href="#">手表</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">女装</a></li>
+                <li><a href="#">男装</a></li>
+                <li><a href="#">箱包</a></li>
+                <li><a href="#">家电</a></li>
+                <li><a href="#">手表</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--显示所有分类-->
+   <div style="width:100%;height:30px">
+
+   </div>
+</body>
+</html>

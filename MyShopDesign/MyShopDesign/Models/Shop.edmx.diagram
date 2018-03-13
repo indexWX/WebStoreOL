@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="661458498f584f9f9ca87933ab0c8cb3" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="Model1.T_Shop_ProductCategory" Width="1.5" PointX="1.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.T_Shop_Users" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.T_Shop_Workers" Width="1.5" PointX="2.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.T_Shop_Wuliu" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.V_Shop_ProductPriceAsc" Width="1.5" PointX="4.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.V_Shop_ProductPriceDesc" Width="1.5" PointX="6.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.V_Shop_SuperAdin" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="Model1.FK_T_Shop_Wuliu_ToUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model1.T_Shop_OrderForm" Width="1.5" PointX="5.25" PointY="8.75" />
+        <AssociationConnector Association="Model1.FK_T_Shop_OrderForm_ToUser" />
+        <AssociationConnector Association="Model1.FK_T_Shop_OrderForm_ToWuliu" />
+        <EntityTypeShape EntityType="Model1.T_Shop_Product" Width="1.5" PointX="3.75" PointY="16.25" />
+        <AssociationConnector Association="Model1.FK_T_Shop_Product_ToCategory" />
+        <EntityTypeShape EntityType="Model1.T_Shop_Basket" Width="1.5" PointX="6" PointY="13.125" />
+        <AssociationConnector Association="Model1.FK_T_Shop_Basket_ToProduct" />
+        <AssociationConnector Association="Model1.FK_T_Shop_Basket_ToUsers" />
+        <EntityTypeShape EntityType="Model1.T_Shop_OFProduct" Width="1.5" PointX="8.5" PointY="12.875" />
+        <AssociationConnector Association="Model1.FK_T_Shop_OFProduct_ToOrder" />
+        <AssociationConnector Association="Model1.FK_T_Shop_OFProduct_ToProduct" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

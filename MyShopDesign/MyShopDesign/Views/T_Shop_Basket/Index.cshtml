@@ -1,0 +1,133 @@
+﻿@model IEnumerable<MyShopDesign.Models.T_Shop_Basket>
+@using MyShopDesign.Models;
+
+@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="~/Scripts/jquery-1.11.min.js"></script>
+    <script src="~/Scripts/etao.js"></script>
+    <script src="~/Scripts/cart.js"></script>
+    <link href="~/Content/cart.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" /> 
+    <title>Index</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/ProductView/Index">首页</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/ProductView/ProductAll">所有商品</a></li>
+                    <li class="dropdown">
+                        <a href="/ProductView/" class="dropdown-toggle" data-toggle="dropdown">所有类别 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/ProductView/Productkind?id=8">女装</a></li>
+                            <li><a href="/ProductView/Productkind?id=10">男装</a></li>
+                            <li><a href="/ProductView/Productkind?id=12">家电</a></li>
+                            <li><a href="/ProductView/ProductAll">所有</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" style="margin-top:17px">
+                    <a href="#" style="margin-left:30px;margin-top:0px;margin-bottom:10px" class="glyphicon glyphicon-user">&nbsp;个人中心</a>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    @*导航条*@
+   
+                    <table id="cartTable" class="cart table table-condensed">
+
+                     
+                        <tr>
+                            <th class="t-checkbox"><label><input class="check-all check" type="checkbox" />全选</label></th>
+                            <th class="t-goods text-center"><label>商品信息</label></th>                           
+                            <th class="t-selling-price text-center"><label>商品单价</label></th>
+                            <th class="t-qty text-center"><label>购买数量</label></th>
+                            <th class="t-subtotal text-center"><label>金额小计</label></th>
+                            <th class="t-action"><label>操作</label></th>
+                        </tr>
+
+                        
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center" class="goods">
+                                    <label>
+                                        <input type="checkbox" class="check-one check" />
+                                    </label>
+                                </td>
+
+                                <td style="text-align:center" class="goods">
+                                    @Html.DisplayFor(modelItem => item.T_Shop_Product.Name)
+                                    <img src="~/image/@Html.DisplayFor(modelItem => item.T_Shop_Product.Pic )" />
+                                </td>
+                                <td style="text-align:center" 
+                                    class="selling-price number small-bold-red text-center myid" 
+                                    data-bind="@Html.DisplayFor(modelItem => item.Total)"
+                                    data-id="@Html.DisplayFor(modelItem => item.Id)"
+                                    
+                                    >
+                                
+                                </td>
+                                <td>
+                                    <div class="input-group input-group-sm">
+                                         <input type="text" class="number form-control input-sm text-center" value="@Html.DisplayFor(modelItem => item.Count)" />
+                                        
+                                    </div>
+                                </td>
+                                <td class="subtotal number small-bold-red text-center"
+                                    style="padding-top: 1.1rem;"></td>
+                              
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                                <td>
+                                <a href="AddtoOFproduct?ProductId= @Html.DisplayFor(modelItem => item.T_Shop_Product.Id)&Amount=@Html.DisplayFor(modelItem => item.Count)">去结算</a>
+                                 </td>
+                               
+                            </tr>
+                        }
+                    </table>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="cart-summary">
+                <div style="margin-left: 2rem;" class="pull-right">
+                    <a href=""
+                       id="btn_settlement" type="button" class="btn btn-primary" disabled>去结算</a>
+                 </div>
+                <div style="margin-left: 1rem; margin-top: 0.4rem;" class="pull-right total">
+                    <label>金额合计:<span id="priceTotal" class="price-total large-bold-red">0.00</span></label>
+                </div>
+                <div style="margin-top: 4px;" class="pull-right">
+                    <label>
+                        您选择了<span id="itemCount" class="large-bold-red" style="margin: 0 4px;"></span>件商品，共计<span id="qtyCount" class="large-bold-red" style="margin: 0 4px;"></span>件
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

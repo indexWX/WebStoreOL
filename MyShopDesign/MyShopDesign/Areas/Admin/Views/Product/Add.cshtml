@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "添加产品";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Basic Form Elements
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form" action="/admin/product/AddSave" method="post">
+                            <div class="form-group">
+                                <label>产品名</label>
+                                <input class="form-control" name="Name">
+                            </div>
+                            <div class="form-group">
+                                <label>价格</label>
+                                <input class="form-control" name="Price">
+                            </div>
+                            <div class="form-group">
+                                <label>库存</label>
+                                <input class="form-control" name="Store">
+                            </div>
+                            <div class="form-group">
+                                <label>月销量</label>
+                                <input class="form-control" name="Month">
+                            </div>
+                            <div class="form-group">
+                                <label>分类</label>
+                                @*<select class="form-control" name="Category">
+                                        <option>数码</option>
+                                        <option>家电</option>
+                                    </select>*@
+                                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>产品描述</label>
+                                <textarea class="form-control" rows="3" name="Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>图片</label>
+                                <input class="form-control" type="file" name="Pic">
+                            </div>
+
+                            <button type="submit" class="btn btn-default">添加</button>
+                            <button type="reset" class="btn btn-default">清空</button>
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+

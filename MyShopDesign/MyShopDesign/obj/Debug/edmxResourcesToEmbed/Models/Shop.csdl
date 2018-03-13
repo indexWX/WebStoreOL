@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="T_Shop_ProductCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Shop_Product" Relationship="Model1.FK_T_Shop_Product_ToCategory" FromRole="T_Shop_ProductCategory" ToRole="T_Shop_Product" />
+  </EntityType>
+  <EntityType Name="T_Shop_Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="PetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="BirthDay" Type="DateTime" Precision="3" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="QQ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="T_Shop_Wuliu" Relationship="Self.FK_T_Shop_Wuliu_ToUsers" FromRole="T_Shop_Users" ToRole="T_Shop_Wuliu" />
+    <NavigationProperty Name="T_Shop_OrderForm" Relationship="Model1.FK_T_Shop_OrderForm_ToUser" FromRole="T_Shop_Users" ToRole="T_Shop_OrderForm" />
+    <NavigationProperty Name="T_Shop_Basket" Relationship="Model1.FK_T_Shop_Basket_ToUsers" FromRole="T_Shop_Users" ToRole="T_Shop_Basket" />
+  </EntityType>
+  <EntityType Name="T_Shop_Workers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsSuper" Type="Int32" Nullable="false" />
+    <Property Name="TrueName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="T_Shop_Wuliu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="T_Shop_Users" Relationship="Self.FK_T_Shop_Wuliu_ToUsers" FromRole="T_Shop_Wuliu" ToRole="T_Shop_Users" />
+    <NavigationProperty Name="T_Shop_OrderForm" Relationship="Model1.FK_T_Shop_OrderForm_ToWuliu" FromRole="T_Shop_Wuliu" ToRole="T_Shop_OrderForm" />
+  </EntityType>
+  <EntityType Name="V_Shop_ProductPriceAsc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Store" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_Shop_ProductPriceDesc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Store" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_Shop_SuperAdin">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="IsSuper" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salary" Type="Double" />
+    <Property Name="IsSuper" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_T_Shop_Wuliu_ToUsers">
+    <End Role="T_Shop_Users" Type="Self.T_Shop_Users" Multiplicity="0..1" />
+    <End Role="T_Shop_Wuliu" Type="Self.T_Shop_Wuliu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_Wuliu">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyShopEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="T_Shop_ProductCategory" EntityType="Self.T_Shop_ProductCategory" />
+    <EntitySet Name="T_Shop_Users" EntityType="Self.T_Shop_Users" />
+    <EntitySet Name="T_Shop_Workers" EntityType="Self.T_Shop_Workers" />
+    <EntitySet Name="T_Shop_Wuliu" EntityType="Self.T_Shop_Wuliu" />
+    <EntitySet Name="V_Shop_ProductPriceAsc" EntityType="Self.V_Shop_ProductPriceAsc" />
+    <EntitySet Name="V_Shop_ProductPriceDesc" EntityType="Self.V_Shop_ProductPriceDesc" />
+    <EntitySet Name="V_Shop_SuperAdin" EntityType="Self.V_Shop_SuperAdin" />
+    <AssociationSet Name="FK_T_Shop_Wuliu_ToUsers" Association="Self.FK_T_Shop_Wuliu_ToUsers">
+      <End Role="T_Shop_Users" EntitySet="T_Shop_Users" />
+      <End Role="T_Shop_Wuliu" EntitySet="T_Shop_Wuliu" />
+    </AssociationSet>
+    <EntitySet Name="T_Shop_OrderForm" EntityType="Model1.T_Shop_OrderForm" />
+    <AssociationSet Name="FK_T_Shop_OrderForm_ToUser" Association="Model1.FK_T_Shop_OrderForm_ToUser">
+      <End Role="T_Shop_Users" EntitySet="T_Shop_Users" />
+      <End Role="T_Shop_OrderForm" EntitySet="T_Shop_OrderForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Shop_OrderForm_ToWuliu" Association="Model1.FK_T_Shop_OrderForm_ToWuliu">
+      <End Role="T_Shop_Wuliu" EntitySet="T_Shop_Wuliu" />
+      <End Role="T_Shop_OrderForm" EntitySet="T_Shop_OrderForm" />
+    </AssociationSet>
+    <EntitySet Name="T_Shop_Product" EntityType="Model1.T_Shop_Product" />
+    <AssociationSet Name="FK_T_Shop_Product_ToCategory" Association="Model1.FK_T_Shop_Product_ToCategory">
+      <End Role="T_Shop_ProductCategory" EntitySet="T_Shop_ProductCategory" />
+      <End Role="T_Shop_Product" EntitySet="T_Shop_Product" />
+    </AssociationSet>
+    <EntitySet Name="T_Shop_Basket" EntityType="Model1.T_Shop_Basket" />
+    <AssociationSet Name="FK_T_Shop_Basket_ToProduct" Association="Model1.FK_T_Shop_Basket_ToProduct">
+      <End Role="T_Shop_Product" EntitySet="T_Shop_Product" />
+      <End Role="T_Shop_Basket" EntitySet="T_Shop_Basket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Shop_Basket_ToUsers" Association="Model1.FK_T_Shop_Basket_ToUsers">
+      <End Role="T_Shop_Users" EntitySet="T_Shop_Users" />
+      <End Role="T_Shop_Basket" EntitySet="T_Shop_Basket" />
+    </AssociationSet>
+    <EntitySet Name="T_Shop_OFProduct" EntityType="Model1.T_Shop_OFProduct" />
+    <AssociationSet Name="FK_T_Shop_OFProduct_ToOrder" Association="Model1.FK_T_Shop_OFProduct_ToOrder">
+      <End Role="T_Shop_OrderForm" EntitySet="T_Shop_OrderForm" />
+      <End Role="T_Shop_OFProduct" EntitySet="T_Shop_OFProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Shop_OFProduct_ToProduct" Association="Model1.FK_T_Shop_OFProduct_ToProduct">
+      <End Role="T_Shop_Product" EntitySet="T_Shop_Product" />
+      <End Role="T_Shop_OFProduct" EntitySet="T_Shop_OFProduct" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="T_Shop_OrderForm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="WuliuId" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="FahuoId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Shop_Users" Relationship="Model1.FK_T_Shop_OrderForm_ToUser" FromRole="T_Shop_OrderForm" ToRole="T_Shop_Users" />
+    <NavigationProperty Name="T_Shop_Wuliu" Relationship="Model1.FK_T_Shop_OrderForm_ToWuliu" FromRole="T_Shop_OrderForm" ToRole="T_Shop_Wuliu" />
+    <NavigationProperty Name="T_Shop_OFProduct" Relationship="Model1.FK_T_Shop_OFProduct_ToOrder" FromRole="T_Shop_OrderForm" ToRole="T_Shop_OFProduct" />
+  </EntityType>
+  <Association Name="FK_T_Shop_OrderForm_ToUser">
+    <End Type="Model1.T_Shop_Users" Role="T_Shop_Users" Multiplicity="0..1" />
+    <End Type="Model1.T_Shop_OrderForm" Role="T_Shop_OrderForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_OrderForm">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Shop_OrderForm_ToWuliu">
+    <End Type="Model1.T_Shop_Wuliu" Role="T_Shop_Wuliu" Multiplicity="0..1" />
+    <End Type="Model1.T_Shop_OrderForm" Role="T_Shop_OrderForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Wuliu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_OrderForm">
+        <PropertyRef Name="WuliuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="T_Shop_Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Store" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_Shop_ProductCategory" Relationship="Model1.FK_T_Shop_Product_ToCategory" FromRole="T_Shop_Product" ToRole="T_Shop_ProductCategory" />
+    <NavigationProperty Name="T_Shop_Basket" Relationship="Model1.FK_T_Shop_Basket_ToProduct" FromRole="T_Shop_Product" ToRole="T_Shop_Basket" />
+    <NavigationProperty Name="T_Shop_OFProduct" Relationship="Model1.FK_T_Shop_OFProduct_ToProduct" FromRole="T_Shop_Product" ToRole="T_Shop_OFProduct" />
+  </EntityType>
+  <Association Name="FK_T_Shop_Product_ToCategory">
+    <End Type="Model1.T_Shop_ProductCategory" Role="T_Shop_ProductCategory" Multiplicity="0..1" />
+    <End Type="Model1.T_Shop_Product" Role="T_Shop_Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_ProductCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="T_Shop_Basket">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="T_Shop_Product" Relationship="Model1.FK_T_Shop_Basket_ToProduct" FromRole="T_Shop_Basket" ToRole="T_Shop_Product" />
+    <NavigationProperty Name="T_Shop_Users" Relationship="Model1.FK_T_Shop_Basket_ToUsers" FromRole="T_Shop_Basket" ToRole="T_Shop_Users" />
+  </EntityType>
+  <Association Name="FK_T_Shop_Basket_ToProduct">
+    <End Type="Model1.T_Shop_Product" Role="T_Shop_Product" Multiplicity="1" />
+    <End Type="Model1.T_Shop_Basket" Role="T_Shop_Basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_Basket">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Shop_Basket_ToUsers">
+    <End Type="Model1.T_Shop_Users" Role="T_Shop_Users" Multiplicity="1" />
+    <End Type="Model1.T_Shop_Basket" Role="T_Shop_Basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_Basket">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="T_Shop_OFProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="Total" Type="Double" />
+    <NavigationProperty Name="T_Shop_OrderForm" Relationship="Model1.FK_T_Shop_OFProduct_ToOrder" FromRole="T_Shop_OFProduct" ToRole="T_Shop_OrderForm" />
+    <NavigationProperty Name="T_Shop_Product" Relationship="Model1.FK_T_Shop_OFProduct_ToProduct" FromRole="T_Shop_OFProduct" ToRole="T_Shop_Product" />
+  </EntityType>
+  <Association Name="FK_T_Shop_OFProduct_ToOrder">
+    <End Type="Model1.T_Shop_OrderForm" Role="T_Shop_OrderForm" Multiplicity="1" />
+    <End Type="Model1.T_Shop_OFProduct" Role="T_Shop_OFProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_OrderForm">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_OFProduct">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Shop_OFProduct_ToProduct">
+    <End Type="Model1.T_Shop_Product" Role="T_Shop_Product" Multiplicity="1" />
+    <End Type="Model1.T_Shop_OFProduct" Role="T_Shop_OFProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Shop_Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="T_Shop_OFProduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
